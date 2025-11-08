@@ -19,7 +19,7 @@ export default function MyBookingsScreen({ navigation }) {
   const { bookings } = useBooking();
   const [selectedFilter, setSelectedFilter] = useState("all");
 
-  const userBookings = bookings.filter((b) => b.consumerId === user.id);
+  const userBookings = bookings.filter((b) => b.consumerId === user?.id);
 
   const filteredBookings =
     selectedFilter === "all"
@@ -34,31 +34,33 @@ export default function MyBookingsScreen({ navigation }) {
       </View>
 
       {/* Filter Tabs */}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.filterContainer}
-      >
-        {filterOptions.map((filter) => (
-          <TouchableOpacity
-            key={filter.id}
-            style={[
-              styles.filterChip,
-              selectedFilter === filter.id && styles.filterChipActive,
-            ]}
-            onPress={() => setSelectedFilter(filter.id)}
-          >
-            <Text
+      <View style={styles.filterContainer}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.filterScrollContent}
+        >
+          {filterOptions.map((filter) => (
+            <TouchableOpacity
+              key={filter.id}
               style={[
-                styles.filterText,
-                selectedFilter === filter.id && styles.filterTextActive,
+                styles.filterChip,
+                selectedFilter === filter.id && styles.filterChipActive,
               ]}
+              onPress={() => setSelectedFilter(filter.id)}
             >
-              {filter.label}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+              <Text
+                style={[
+                  styles.filterText,
+                  selectedFilter === filter.id && styles.filterTextActive,
+                ]}
+              >
+                {filter.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
 
       {/* Bookings List */}
       <ScrollView style={styles.list} showsVerticalScrollIndicator={false}>
@@ -107,18 +109,20 @@ const styles = StyleSheet.create({
     color: colors.gray[500],
   },
   filterContainer: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
     backgroundColor: colors.white,
     borderBottomWidth: 1,
     borderBottomColor: colors.gray[100],
+    paddingVertical: 12,
+  },
+  filterScrollContent: {
+    paddingHorizontal: spacing.lg,
   },
   filterChip: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
     borderRadius: 20,
     backgroundColor: colors.gray[100],
-    marginRight: spacing.sm,
+    marginRight: 8,
   },
   filterChipActive: {
     backgroundColor: colors.primary,

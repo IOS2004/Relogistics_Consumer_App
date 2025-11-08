@@ -66,46 +66,48 @@ export default function BookingCard({ booking, onPress }) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.white,
-    borderRadius: 16,
+    borderRadius: 12,
     padding: spacing.md,
     marginBottom: spacing.md,
     elevation: 2,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
     shadowRadius: 4,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-start",
-    marginBottom: spacing.md,
+    alignItems: "center",
+    marginBottom: spacing.sm,
   },
   bookingId: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "700",
     color: colors.gray[900],
+    marginBottom: 2,
   },
   date: {
     fontSize: 12,
     color: colors.gray[500],
-    marginTop: 2,
   },
   statusBadge: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
   },
   statusText: {
     fontSize: 12,
     fontWeight: "600",
+    textTransform: "capitalize",
   },
   locationContainer: {
-    marginBottom: spacing.md,
+    marginVertical: spacing.sm,
   },
   locationRow: {
     flexDirection: "row",
     alignItems: "center",
+    marginVertical: 2,
   },
   locationText: {
     flex: 1,
@@ -114,22 +116,23 @@ const styles = StyleSheet.create({
   locationLabel: {
     fontSize: 12,
     color: colors.gray[500],
+    marginBottom: 1,
   },
   address: {
     fontSize: 14,
     color: colors.gray[900],
-    fontWeight: "500",
-    marginTop: 2,
+    fontWeight: "600",
   },
   divider: {
     marginLeft: 10,
-    marginVertical: 4,
+    marginVertical: 2,
   },
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: spacing.sm,
+    marginTop: spacing.xs,
     borderTopWidth: 1,
     borderTopColor: colors.gray[100],
   },
@@ -139,7 +142,7 @@ const styles = StyleSheet.create({
   },
   detailText: {
     marginLeft: spacing.xs,
-    fontSize: 14,
+    fontSize: 13,
     color: colors.gray[600],
   },
   price: {

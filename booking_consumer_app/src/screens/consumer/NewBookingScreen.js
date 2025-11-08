@@ -65,6 +65,11 @@ export default function NewBookingScreen({ navigation }) {
       return;
     }
 
+    if (!user?.id) {
+      Alert.alert("Error", "User not authenticated");
+      return;
+    }
+
     const newBooking = createBooking({
       consumerId: user.id,
       consumerName: user.name,

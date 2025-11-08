@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }) {
 
   // Get user's recent bookings
   const userBookings = bookings
-    .filter((b) => b.consumerId === user.id)
+    .filter((b) => b.consumerId === user?.id)
     .slice(0, 3);
 
   const activeBooking = userBookings.find(
@@ -26,7 +26,9 @@ export default function HomeScreen({ navigation }) {
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.header}>
         <View>
-          <Text style={styles.greeting}>Hello, {user.name}! 👋</Text>
+          <Text style={styles.greeting}>
+            Hello, {user?.name || "Guest"}! 👋
+          </Text>
           <Text style={styles.subGreeting}>
             Where do you want to ship today?
           </Text>

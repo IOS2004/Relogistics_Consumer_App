@@ -17,9 +17,9 @@ import { colors, spacing } from "../../config/theme";
 export default function ProfileScreen() {
   const { user, logout, updateProfile } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(user.name);
-  const [phone, setPhone] = useState(user.phone);
-  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(user?.name || "");
+  const [phone, setPhone] = useState(user?.phone || "");
+  const [email, setEmail] = useState(user?.email || "");
 
   const handleSave = () => {
     updateProfile({ name, phone, email });
@@ -42,8 +42,8 @@ export default function ProfileScreen() {
           <View style={styles.avatar}>
             <Icon name="account" size={48} color={colors.white} />
           </View>
-          <Text style={styles.userName}>{user.name}</Text>
-          <Text style={styles.userEmail}>{user.email}</Text>
+          <Text style={styles.userName}>{user?.name || "Guest"}</Text>
+          <Text style={styles.userEmail}>{user?.email || ""}</Text>
         </View>
 
         {/* Profile Info */}
@@ -84,9 +84,9 @@ export default function ProfileScreen() {
                   variant="outline"
                   onPress={() => {
                     setIsEditing(false);
-                    setName(user.name);
-                    setPhone(user.phone);
-                    setEmail(user.email);
+                    setName(user?.name || "");
+                    setPhone(user?.phone || "");
+                    setEmail(user?.email || "");
                   }}
                   style={{ flex: 1, marginRight: spacing.sm }}
                 >
@@ -102,9 +102,9 @@ export default function ProfileScreen() {
             </>
           ) : (
             <View style={styles.infoCard}>
-              <InfoRow icon="account" label="Name" value={user.name} />
-              <InfoRow icon="email" label="Email" value={user.email} />
-              <InfoRow icon="phone" label="Phone" value={user.phone} />
+              <InfoRow icon="account" label="Name" value={user?.name || ""} />
+              <InfoRow icon="email" label="Email" value={user?.email || ""} />
+              <InfoRow icon="phone" label="Phone" value={user?.phone || ""} />
               <InfoRow icon="badge-account" label="Role" value="Consumer" />
             </View>
           )}

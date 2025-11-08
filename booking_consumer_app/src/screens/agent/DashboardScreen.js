@@ -48,70 +48,74 @@ export default function DashboardScreen({ navigation }) {
       </View>
 
       {/* Stats Cards */}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.statsContainer}
-      >
-        <StatCard
-          title="Total Bookings"
-          value={stats.total}
-          icon="package-variant"
-          color={colors.primary}
-        />
-        <StatCard
-          title="Pending"
-          value={stats.pending}
-          icon="clock-outline"
-          color={colors.warning}
-        />
-        <StatCard
-          title="Active"
-          value={stats.active}
-          icon="truck-fast"
-          color={colors.info}
-        />
-        <StatCard
-          title="Completed"
-          value={stats.completed}
-          icon="check-circle"
-          color={colors.success}
-        />
-      </ScrollView>
+      <View style={styles.statsContainer}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.statsScrollContent}
+        >
+          <StatCard
+            title="Total Bookings"
+            value={stats.total}
+            icon="package-variant"
+            color={colors.primary}
+          />
+          <StatCard
+            title="Pending"
+            value={stats.pending}
+            icon="clock-outline"
+            color={colors.warning}
+          />
+          <StatCard
+            title="Active"
+            value={stats.active}
+            icon="truck-fast"
+            color={colors.info}
+          />
+          <StatCard
+            title="Completed"
+            value={stats.completed}
+            icon="check-circle"
+            color={colors.success}
+          />
+        </ScrollView>
+      </View>
 
       {/* Filter Tabs */}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.filterContainer}
-      >
-        {filterOptions.map((filter) => (
-          <TouchableOpacity
-            key={filter.id}
-            style={[
-              styles.filterChip,
-              selectedFilter === filter.id && styles.filterChipActive,
-            ]}
-            onPress={() => setSelectedFilter(filter.id)}
-          >
-            <Icon
-              name={filter.icon}
-              size={18}
-              color={
-                selectedFilter === filter.id ? colors.white : colors.gray[600]
-              }
-            />
-            <Text
+      <View style={styles.filterContainer}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.filterScrollContent}
+        >
+          {filterOptions.map((filter) => (
+            <TouchableOpacity
+              key={filter.id}
               style={[
-                styles.filterText,
-                selectedFilter === filter.id && styles.filterTextActive,
+                styles.filterChip,
+                selectedFilter === filter.id && styles.filterChipActive,
               ]}
+              onPress={() => setSelectedFilter(filter.id)}
             >
-              {filter.label}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+              <Icon
+                name={filter.icon}
+                size={16}
+                color={
+                  selectedFilter === filter.id ? colors.white : colors.gray[600]
+                }
+              />
+              <Text
+                style={[
+                  styles.filterText,
+                  selectedFilter === filter.id && styles.filterTextActive,
+                ]}
+              >
+                {filter.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
 
       {/* Bookings List */}
       <ScrollView style={styles.list} showsVerticalScrollIndicator={false}>
@@ -152,7 +156,7 @@ function StatCard({ title, value, icon, color }) {
   return (
     <View style={styles.statCard}>
       <View style={[styles.statIcon, { backgroundColor: color + "20" }]}>
-        <Icon name={icon} size={24} color={color} />
+        <Icon name={icon} size={20} color={color} />
       </View>
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statTitle}>{title}</Text>
@@ -196,54 +200,58 @@ const styles = StyleSheet.create({
     backgroundColor: colors.error,
   },
   statsContainer: {
+    paddingVertical: 12,
+  },
+  statsScrollContent: {
     paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
   },
   statCard: {
     backgroundColor: colors.white,
-    borderRadius: 16,
-    padding: spacing.lg,
-    marginRight: spacing.md,
-    minWidth: 140,
+    borderRadius: 12,
+    padding: 12,
+    marginRight: 12,
+    width: 110,
     elevation: 2,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
   },
   statIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   statValue: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: "700",
     color: colors.gray[900],
   },
   statTitle: {
-    fontSize: 14,
+    fontSize: 12,
     color: colors.gray[600],
-    marginTop: 4,
+    marginTop: 2,
   },
   filterContainer: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
     backgroundColor: colors.white,
     borderBottomWidth: 1,
     borderBottomColor: colors.gray[100],
+    paddingVertical: 12,
+  },
+  filterScrollContent: {
+    paddingHorizontal: spacing.lg,
   },
   filterChip: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
     borderRadius: 20,
     backgroundColor: colors.gray[100],
-    marginRight: spacing.sm,
+    marginRight: 8,
   },
   filterChipActive: {
     backgroundColor: colors.primary,
