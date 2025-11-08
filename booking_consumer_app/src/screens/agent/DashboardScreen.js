@@ -39,7 +39,9 @@ export default function DashboardScreen({ navigation }) {
       <View style={styles.header}>
         <View>
           <Text style={styles.greeting}>Dashboard</Text>
-          <Text style={styles.subGreeting}>Welcome back, {user?.name || 'Agent'}</Text>
+          <Text style={styles.subGreeting}>
+            Welcome back, {user?.name || "Agent"}
+          </Text>
         </View>
         <View style={styles.notificationIcon}>
           <Icon name="bell-outline" size={24} color={colors.gray[700]} />
