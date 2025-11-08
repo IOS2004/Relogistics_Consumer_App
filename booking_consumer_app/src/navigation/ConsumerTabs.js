@@ -10,6 +10,7 @@ import NewBookingScreen from "../screens/consumer/NewBookingScreen";
 import MyBookingsScreen from "../screens/consumer/MyBookingsScreen";
 import BookingDetailsScreen from "../screens/consumer/BookingDetailsScreen";
 import TrackShipmentScreen from "../screens/consumer/TrackShipmentScreen";
+import NearbyTrucksScreen from "../screens/consumer/NearbyTrucksScreen";
 import ProfileScreen from "../screens/consumer/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
@@ -40,6 +41,11 @@ function HomeStack() {
           headerStyle: { backgroundColor: colors.primary },
           headerTintColor: colors.white,
         }}
+      />
+      <Stack.Screen
+        name="NearbyTrucks"
+        component={NearbyTrucksScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

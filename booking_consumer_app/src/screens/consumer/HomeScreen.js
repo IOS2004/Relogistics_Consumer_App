@@ -57,6 +57,20 @@ export default function HomeScreen({ navigation }) {
               color={colors.success}
             />
           </View>
+          <View style={styles.actionsContainer}>
+            <QuickActionCard
+              icon="truck-delivery"
+              title="Nearby Trucks"
+              onPress={() => navigation.navigate("NearbyTrucks")}
+              color={colors.info}
+            />
+            <QuickActionCard
+              icon="history"
+              title="My Bookings"
+              onPress={() => navigation.navigate("BookingsTab")}
+              color={colors.warning}
+            />
+          </View>
         </View>
 
         {/* Active Shipment */}
