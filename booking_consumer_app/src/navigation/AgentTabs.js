@@ -11,6 +11,10 @@ import TruckManagementScreen from "../screens/agent/TruckManagementScreen";
 import ReportsScreen from "../screens/agent/ReportsScreen";
 import ProfileScreen from "../screens/agent/ProfileScreen";
 import BookingDetailsScreen from "../screens/agent/BookingDetailsScreen";
+import EarningsScreen from "../screens/agent/EarningsScreen";
+import NotificationsScreen from "../screens/agent/NotificationsScreen";
+import SupportScreen from "../screens/agent/SupportScreen";
+import EnhancedReportsScreen from "../screens/agent/EnhancedReportsScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -41,6 +45,24 @@ function DashboardStack() {
           headerTintColor: colors.white,
         }}
       />
+      <Stack.Screen
+        name="TruckManagement"
+        component={TruckManagementScreen}
+        options={{
+          title: "Truck Management",
+          headerStyle: { backgroundColor: colors.primary },
+          headerTintColor: colors.white,
+        }}
+      />
+      <Stack.Screen
+        name="EnhancedReports"
+        component={EnhancedReportsScreen}
+        options={{
+          title: "Analytics & Reports",
+          headerStyle: { backgroundColor: colors.primary },
+          headerTintColor: colors.white,
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -54,10 +76,12 @@ export default function AgentTabs() {
 
           if (route.name === "DashboardTab") {
             iconName = focused ? "view-dashboard" : "view-dashboard-outline";
-          } else if (route.name === "Trucks") {
-            iconName = focused ? "truck" : "truck-outline";
-          } else if (route.name === "Reports") {
-            iconName = focused ? "chart-bar" : "chart-bar";
+          } else if (route.name === "Earnings") {
+            iconName = focused ? "wallet" : "wallet-outline";
+          } else if (route.name === "Notifications") {
+            iconName = focused ? "bell" : "bell-outline";
+          } else if (route.name === "Support") {
+            iconName = focused ? "help-circle" : "help-circle-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "account" : "account-outline";
           }
@@ -79,34 +103,24 @@ export default function AgentTabs() {
         options={{ title: "Dashboard" }}
       />
       <Tab.Screen
-        name="Trucks"
-        component={TruckManagementScreen}
-        options={{
-          title: "Trucks",
-          headerShown: true,
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: colors.white,
-        }}
+        name="Earnings"
+        component={EarningsScreen}
+        options={{ title: "Earnings" }}
       />
       <Tab.Screen
-        name="Reports"
-        component={ReportsScreen}
-        options={{
-          title: "Reports",
-          headerShown: true,
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: colors.white,
-        }}
+        name="Notifications"
+        component={NotificationsScreen}
+        options={{ title: "Alerts" }}
+      />
+      <Tab.Screen
+        name="Support"
+        component={SupportScreen}
+        options={{ title: "Support" }}
       />
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{
-          title: "Profile",
-          headerShown: true,
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: colors.white,
-        }}
+        options={{ title: "Profile" }}
       />
     </Tab.Navigator>
   );

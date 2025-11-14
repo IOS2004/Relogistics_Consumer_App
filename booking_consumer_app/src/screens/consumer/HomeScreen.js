@@ -59,9 +59,9 @@ export default function HomeScreen({ navigation }) {
           </View>
           <View style={styles.actionsContainer}>
             <QuickActionCard
-              icon="truck-delivery"
-              title="Nearby Trucks"
-              onPress={() => navigation.navigate("NearbyTrucks")}
+              icon="wallet"
+              title="Wallet"
+              onPress={() => navigation.navigate("Wallet")}
               color={colors.info}
             />
             <QuickActionCard

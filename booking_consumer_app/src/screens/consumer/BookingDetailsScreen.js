@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useBooking } from "../../contexts/BookingContext";
@@ -7,7 +7,7 @@ import { colors, spacing } from "../../config/theme";
 import { statusColors, statusLabels, mockDrivers } from "../../data/mockData";
 import { format } from "date-fns";
 
-export default function BookingDetailsScreen({ route }) {
+export default function BookingDetailsScreen({ route, navigation }) {
   const { bookingId } = route.params;
   const { getBookingById } = useBooking();
 
@@ -177,6 +177,39 @@ export default function BookingDetailsScreen({ route }) {
           <Text style={styles.priceLabel}>Total Amount</Text>
           <Text style={styles.priceValue}>${booking.priceEstimate}</Text>
         </View>
+      </View>
+
+      {/* Action Buttons */}
+      <View style={styles.actionsCard}>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() =>
+            navigation.navigate("Invoice", { bookingId: booking.id })
+          }
+        >
+          <Icon name="file-document-outline" size={20} color={colors.primary} />
+          <Text style={styles.actionButtonText}>View Invoice</Text>
+        </TouchableOpacity>
+
+        {booking.status === "delivered" && (
+          <TouchableOpacity
+            style={styles.actionButton}
+            onPress={() =>
+              navigation.navigate("RatingReview", {
+                bookingId: booking.id,
+                driverName: driver?.name,
+              })
+            }
+          >
+            <Icon name="star-outline" size={20} color={colors.warning} />
+            <Text style={styles.actionButtonText}>Rate & Review</Text>
+          </TouchableOpacity>
+        )}
+
+        <TouchableOpacity style={styles.actionButton}>
+          <Icon name="help-circle-outline" size={20} color={colors.gray[600]} />
+          <Text style={styles.actionButtonText}>Get Help</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -412,5 +445,30 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "700",
     color: colors.primary,
+  },
+  actionsCard: {
+    backgroundColor: colors.white,
+    borderRadius: 12,
+    marginHorizontal: spacing.lg,
+    marginBottom: spacing.lg,
+    padding: spacing.md,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
+  },
+  actionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray[100],
+  },
+  actionButtonText: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: colors.gray[900],
+    marginLeft: spacing.sm,
   },
 });

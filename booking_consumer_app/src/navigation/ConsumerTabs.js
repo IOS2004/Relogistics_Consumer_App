@@ -12,6 +12,11 @@ import BookingDetailsScreen from "../screens/consumer/BookingDetailsScreen";
 import TrackShipmentScreen from "../screens/consumer/TrackShipmentScreen";
 import NearbyTrucksScreen from "../screens/consumer/NearbyTrucksScreen";
 import ProfileScreen from "../screens/consumer/ProfileScreen";
+import ConsumerNotificationsScreen from "../screens/consumer/ConsumerNotificationsScreen";
+import SupportScreen from "../screens/agent/SupportScreen";
+import InvoiceScreen from "../screens/consumer/InvoiceScreen";
+import RatingReviewScreen from "../screens/consumer/RatingReviewScreen";
+import WalletScreen from "../screens/consumer/WalletScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -47,6 +52,11 @@ function HomeStack() {
         component={NearbyTrucksScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Wallet"
+        component={WalletScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
@@ -68,6 +78,16 @@ function BookingsStack() {
           headerTintColor: colors.white,
         }}
       />
+      <Stack.Screen
+        name="Invoice"
+        component={InvoiceScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="RatingReview"
+        component={RatingReviewScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
@@ -83,8 +103,10 @@ export default function ConsumerTabs() {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "BookingsTab") {
             iconName = focused ? "package-variant" : "package-variant-closed";
-          } else if (route.name === "Track") {
-            iconName = focused ? "map-marker" : "map-marker-outline";
+          } else if (route.name === "Notifications") {
+            iconName = focused ? "bell" : "bell-outline";
+          } else if (route.name === "Support") {
+            iconName = focused ? "help-circle" : "help-circle-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "account" : "account-outline";
           }
@@ -111,24 +133,19 @@ export default function ConsumerTabs() {
         options={{ title: "Bookings" }}
       />
       <Tab.Screen
-        name="Track"
-        component={TrackShipmentScreen}
-        options={{
-          title: "Track",
-          headerShown: true,
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: colors.white,
-        }}
+        name="Notifications"
+        component={ConsumerNotificationsScreen}
+        options={{ title: "Alerts" }}
+      />
+      <Tab.Screen
+        name="Support"
+        component={SupportScreen}
+        options={{ title: "Help" }}
       />
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{
-          title: "Profile",
-          headerShown: true,
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: colors.white,
-        }}
+        options={{ title: "Profile" }}
       />
     </Tab.Navigator>
   );

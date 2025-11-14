@@ -83,6 +83,76 @@ export default function DashboardScreen({ navigation }) {
         </ScrollView>
       </View>
 
+      {/* Quick Actions */}
+      <View style={styles.quickActionsContainer}>
+        <Text style={styles.sectionTitle}>Quick Actions</Text>
+        <View style={styles.quickActionsGrid}>
+          <TouchableOpacity
+            style={styles.quickActionCard}
+            onPress={() => navigation.navigate("EnhancedReports")}
+          >
+            <View
+              style={[
+                styles.quickActionIcon,
+                { backgroundColor: colors.primary + "20" },
+              ]}
+            >
+              <Icon name="chart-line" size={24} color={colors.primary} />
+            </View>
+            <Text style={styles.quickActionText}>Analytics</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.quickActionCard}
+            onPress={() => navigation.navigate("TruckManagement")}
+          >
+            <View
+              style={[
+                styles.quickActionIcon,
+                { backgroundColor: colors.info + "20" },
+              ]}
+            >
+              <Icon name="truck-delivery" size={24} color={colors.info} />
+            </View>
+            <Text style={styles.quickActionText}>Manage Trucks</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.quickActionCard}
+            onPress={() =>
+              navigation.navigate("Earnings", { screen: "Earnings" })
+            }
+          >
+            <View
+              style={[
+                styles.quickActionIcon,
+                { backgroundColor: colors.success + "20" },
+              ]}
+            >
+              <Icon name="wallet" size={24} color={colors.success} />
+            </View>
+            <Text style={styles.quickActionText}>Earnings</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.quickActionCard}
+            onPress={() =>
+              navigation.navigate("Support", { screen: "Support" })
+            }
+          >
+            <View
+              style={[
+                styles.quickActionIcon,
+                { backgroundColor: colors.warning + "20" },
+              ]}
+            >
+              <Icon name="help-circle" size={24} color={colors.warning} />
+            </View>
+            <Text style={styles.quickActionText}>Support</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
       {/* Filter Tabs */}
       <View style={styles.filterContainer}>
         <ScrollView
@@ -236,6 +306,47 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.gray[600],
     marginTop: 2,
+  },
+  quickActionsContainer: {
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: colors.gray[900],
+    marginBottom: spacing.sm,
+  },
+  quickActionsGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginHorizontal: -spacing.xs,
+  },
+  quickActionCard: {
+    width: "48%",
+    backgroundColor: colors.white,
+    padding: spacing.md,
+    borderRadius: 12,
+    alignItems: "center",
+    margin: spacing.xs,
+    elevation: 1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+  },
+  quickActionIcon: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: spacing.sm,
+  },
+  quickActionText: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: colors.gray[900],
   },
   filterContainer: {
     backgroundColor: colors.white,
